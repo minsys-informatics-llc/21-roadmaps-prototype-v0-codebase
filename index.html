@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>21.Roadmaps — Tackling Your AI Readiness. Mitigating Your Cybersecurity Risks.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ══════════════════════════════════════════════════
+       DESIGN SYSTEM — Swiss/System Minimalism
+       Inter + JetBrains Mono · #ff3e00 accent
+       Flat UI · 0 shadows · 0 gradients · sharp corners
+       Dark/Light theme via data-theme on <html>
+       ══════════════════════════════════════════════════ */
+
+    :root {
+      --accent: #ff3e00;
+      --accent-hover: #e03600;
+      --accent-ai: #ff3e00;
+      --accent-cyber: #ff3e00;
+      --accent-cloud: #ff3e00;
+      --bg: #000000;
+      --bg-secondary: #0a0a0a;
+      --text: #ffffff;
+      --text-secondary: #a1a1a1;
+      --border: rgba(255, 255, 255, 0.1);
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-heading: 'Inter', sans-serif;
+      --transition: 0.3s ease;
+    }
+
+    [data-theme="light"] {
+      --bg: #ffffff;
+      --bg-secondary: #f7f7f7;
+      --text: #000000;
+      --text-secondary: #444444;
+      --border: rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      transition: background var(--transition), color var(--transition);
+    }
+
+    /* ── UTILITY ── */
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.04em;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 640px;
+      line-height: 1.8;
+    }
+
+    .section-subtitle-full {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 100%;
+      line-height: 1.8;
+      margin-bottom: 0;
+    }
+
+    .section-subtitle-full-spacing {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 100%;
+      line-height: 1.8;
+      margin-bottom: 48px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition);
+    }
+
+    [data-theme="light"] nav {
+      background: rgba(255, 255, 255, 0.92);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 16px 24px;
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: var(--font-mono);
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      background: var(--accent) !important;
+      color: var(--bg) !important;
+      padding: 10px 22px;
+      border-radius: 2px;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: var(--accent-hover) !important;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+      cursor: pointer;
+      padding: 6px 10px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      border-radius: 2px;
+      transition: border-color 0.2s;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--bg);
+      padding: 100px 0 80px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at 70% 20%, rgba(255, 62, 0, 0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .hero-text-block {
+      /* Text block maintains original spacing between paragraphs */
+      padding-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 .highlight-ai {
+      color: var(--accent);
+    }
+
+    .hero h1 .highlight-cyber {
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 820px;
+      margin-bottom: 40px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+      margin-bottom: 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 55% 45%;
+      gap: 60px;
+      align-items: flex-start;
+      margin-top: 48px;
+    }
+
+    .hero-visual {
+      background: var(--bg-secondary);
+      padding: 24px 40px 24px 40px;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .roadmap-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      position: relative;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .roadmap-item:hover {
+      border-color: var(--accent);
+      background: var(--bg-secondary);
+    }
+
+    .roadmap-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--accent);
+    }
+
+    .roadmap-number {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--accent);
+      min-width: 30px;
+    }
+
+    .roadmap-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .workshop-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 6px 12px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 2px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── CRISIS BANNER ── */
+    .crisis {
+      background: var(--bg-secondary);
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .crisis-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .crisis-card {
+      background: var(--bg);
+      padding: 44px 40px;
+      border-left: 2px solid var(--accent);
+    }
+
+    .crisis-card.ai,
+    .crisis-card.cyber {
+      border-color: var(--accent);
+    }
+
+    .crisis-icon {
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      border: 1px solid var(--border);
+    }
+
+    .crisis-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .crisis-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+
+    .crisis-card .quote {
+      margin-top: 20px;
+      padding: 16px 20px;
+      background: var(--bg-secondary);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      border-left: 2px solid var(--accent);
+    }
+
+    /* ── WIIFM / VALUE PROP ── */
+    .value-prop {
+      background: var(--bg);
+    }
+
+    .vp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-top: 48px;
+    }
+
+    .vp-points {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .vp-point {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .vp-point-icon {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      border: 1px solid var(--border);
+    }
+
+    .vp-point h4 {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+
+    .vp-point p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .vp-visual {
+      background: var(--bg-secondary);
+      padding: 48px 40px;
+      color: var(--text);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .vp-visual::after {
+      display: none;
+    }
+
+    .vp-visual h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .vp-stat-row {
+      display: flex;
+      gap: 1px;
+      background: var(--border);
+      position: relative;
+      z-index: 1;
+    }
+
+    .vp-stat {
+      flex: 1;
+      text-align: center;
+      padding: 20px;
+      background: var(--bg);
+    }
+
+    .vp-stat .number {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .vp-stat .number.ai-color,
+    .vp-stat .number.cyber-color,
+    .vp-stat .number.cloud-color {
+      color: var(--accent);
+    }
+
+    .vp-stat .label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── JOURNEYS ── */
+    .journeys {
+      background: var(--bg-secondary);
+    }
+
+    .journey-tabs {
+      display: flex;
+      gap: 0;
+      margin-top: 40px;
+      margin-bottom: 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .journey-tab {
+      padding: 16px 32px;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      margin-bottom: -1px;
+    }
+
+    .journey-tab.active-ai,
+    .journey-tab.active-cyber {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .journey-tab.active-cloud {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .journey-panels {
+      margin-top: 0;
+    }
+
+    .journey-panel {
+      display: none;
+      background: var(--bg);
+      padding: 48px;
+      border: 1px solid var(--border);
+      border-top: none;
+    }
+
+    .journey-panel.active {
+      display: block;
+    }
+
+    .jp-header {
+      margin-bottom: 36px;
+    }
+
+    .jp-header h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+      color: var(--accent);
+    }
+
+    .jp-header p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 700px;
+    }
+
+    .jp-meta {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .jp-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .jp-meta-item strong {
+      color: var(--text);
+    }
+
+    /* ── TIMELINE LANE VISUALIZATION ── */
+    .tl-journey {
+      margin-bottom: 32px;
+    }
+
+    .tl-playbook {
+      padding: 20px 24px;
+      border: 2px solid var(--accent);
+      background: var(--bg-secondary);
+      margin-bottom: 0;
+      position: relative;
+    }
+
+    .tl-playbook-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .tl-playbook-title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .tl-connector {
+      width: 2px;
+      height: 24px;
+      background: var(--accent);
+      margin-left: 36px;
+    }
+
+    .tl-lane {
+      border-left: 2px solid var(--accent);
+      margin-left: 36px;
+      padding-left: 24px;
+      padding-bottom: 8px;
+      position: relative;
+    }
+
+    .tl-lane::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 18px;
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+    }
+
+    .tl-lane:last-child {
+      border-left-color: transparent;
+    }
+
+    .tl-lane:last-child::after {
+      content: '';
+      position: absolute;
+      left: -2px;
+      top: 0;
+      width: 2px;
+      height: 22px;
+      background: var(--accent);
+    }
+
+    .tl-lane-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .tl-lane-name {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .tl-lane-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 500;
+      padding: 2px 8px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .tl-cards {
+      display: flex;
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .tl-card {
+      flex: 1;
+      background: var(--bg-secondary);
+      padding: 14px 10px;
+      text-align: center;
+    }
+
+    .tl-card-num {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+
+    .tl-card-name {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-it-works {
+      background: var(--bg);
+    }
+
+    .hiw-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin-top: 48px;
+    }
+
+    .hiw-step {
+      position: relative;
+      padding: 28px;
+      background: var(--bg);
+    }
+
+    .hiw-step-num {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .hiw-step h4 {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .hiw-step p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    .hiw-step::after {
+      display: none;
+    }
+
+    /* ── PRICING ── */
+    .pricing {
+      background: var(--bg-secondary);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin-top: 48px;
+    }
+
+    .price-card {
+      background: var(--bg);
+      padding: 36px 28px;
+      border: none;
+      transition: background 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .price-card:hover {
+      background: var(--bg-secondary);
+    }
+
+    .price-card .tier-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .price-card h4 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .price-card .price {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .price-card .price-unit {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+
+    .price-card p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      flex: 1;
+    }
+
+    .price-card .badge-rec {
+      display: inline-block;
+      margin-top: 16px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 4px 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+    }
+
+    .price-section-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      margin-top: 40px;
+    }
+
+    .price-section-label:first-of-type {
+      margin-top: 0;
+    }
+
+    /* ── CTA FINAL ── */
+    .cta-final {
+      background: var(--bg);
+      padding: 100px 0;
+      text-align: center;
+      color: var(--text);
+      border-top: 1px solid var(--border);
+    }
+
+    .cta-final h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 16px;
+    }
+
+    .cta-final p {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+
+    .cta-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      max-width: 900px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    .cta-step {
+      background: var(--bg);
+      padding: 28px 16px;
+    }
+
+    .cta-step-num {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .cta-step h4 {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .cta-step p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg);
+      padding: 32px 0;
+      text-align: center;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── MOBILE ── */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      margin: 5px 0;
+      transition: 0.3s;
+    }
+
+    @media (max-width: 900px) {
+
+      .crisis-grid,
+      .vp-grid,
+      .pricing-grid,
+      .hiw-steps,
+      .cta-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 140px 0 80px;
+      }
+
+      .section {
+        padding: 64px 0;
+      }
+
+      .journey-panel {
+        padding: 28px;
+      }
+
+      .journey-tabs {
+        overflow-x: auto;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: var(--bg);
+        padding: 20px 24px;
+        gap: 16px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .tl-cards {
+        flex-wrap: wrap;
+      }
+
+      .tl-card {
+        flex: 1 1 calc(33% - 1px);
+        min-width: 90px;
+      }
+
+      .tl-lane {
+        padding-left: 16px;
+      }
+
+      .tl-connector {
+        margin-left: 24px;
+      }
+
+      .tl-lane {
+        margin-left: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════ NAV ═══════════ -->
+  <nav>
+    <div class="nav-inner">
+      <div class="logo"><span style="color: var(--accent);">21</span>.<span class="dot"
+          style="color: var(--text);">Roadmaps</span></div>
+      <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="#crisis">Your Imperatives</a></li>
+        <li><a href="#value">Our Proposition</a></li>
+        <li><a href="#journeys">The Journeys</a></li>
+        <li><a href="#how">Workshops</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#connect" class="nav-cta">Book a Call</a></li>
+        <li><button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">Light</button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════ HERO ═══════════ -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">We work with Business Leaders to adress 2 burning Business Imperatives : </div>
+      <h2
+        style="font-family: var(--font-heading); font-size: 1.7rem; font-weight: 600; color: var(--text); letter-spacing: -0.02em; margin-bottom: 12px; font-style: italic;">
+        21 Roadmaps to :
+      </h2>
+      <h1>
+        <span style="font-size: 0.7em; margin-right: 20px;">&#10003;</span>Tackling Your <span class="highlight-ai">AI
+          Readiness</span>.<br>
+        <span style="font-size: 0.7em; margin-right: 20px;">&#10003;</span>Mitigating Your <span
+          class="highlight-cyber">Cybersecurity
+          Risks</span>.
+      </h1>
+
+      <div class="hero-grid">
+        <!-- LEFT PANEL: Content -->
+        <div class="hero-content">
+          <!--
+          POSITIONING ANCHOR — The rhythm tells a complete story in three beats:
+            1. "Start with one Roadmap"  → you start  (low commitment)
+            2. "See the result"          → you see    (proof of value)
+            3. "We guide you to the next"→ we guide   (you're not alone, we know the path)
+          That last shift from "you" to "we" is subtle but powerful —
+          it's exactly where our expertise becomes visible.
+        -->
+          <div class="hero-text-block">
+            <ul
+              style="font-size: 1.4rem; color: var(--text); font-weight: 700; letter-spacing: -0.02em; margin: 0; padding-left: 12px; list-style-type: disc;">
+              <li style="margin-bottom: 0.5px;">2 imperatives. 2 journeys. 21 Roadmaps, one at a time.</li>
+              <li style="margin-bottom: 0.5px;">Collaboratively crafted in Workshops.</li>
+              <li style="margin-bottom: 0.5px;">Start with 1 Roadmap. See the result. Iterate.</li>
+              <li>Walk away with roadmaps that drive future execution.</li>
+            </ul>
+            <p class="hero-sub" style="margin: 0;">
+              Your competitors are already leveraging AI to cut costs and delight customers. Meanwhile, your connected
+              business is more exposed to cyber-risks than ever. We help you act on both through a workshop-driven
+              approach that rewires your organization from the inside out.
+            </p>
+          </div>
+          <div class="hero-ctas">
+            <a href="#journeys" class="btn btn-primary">Explore the Journeys &rarr;</a>
+            <a href="#connect" class="btn btn-outline">Book a Free Consultation</a>
+          </div>
+        </div>
+
+        <!-- RIGHT PANEL: Visual -->
+        <div class="hero-visual">
+          <div class="workshop-badge">Your 21 Roadmaps</div>
+
+          <a href="#panel-ai" class="roadmap-item" onclick="showPanel('ai', event)">
+            <span class="roadmap-number">1</span>
+            <div class="roadmap-text"><strong>7x AI Roadmaps</strong><br>AI Readiness</div>
+          </a>
+
+          <a href="#panel-cyber" class="roadmap-item" onclick="showPanel('cyber', event)">
+            <span class="roadmap-number">2</span>
+            <div class="roadmap-text"><strong>7x Cybersecurity Roadmaps</strong><br>CyberRisk mitigation</div>
+          </a>
+
+          <a href="#cloud-companion" class="roadmap-item">
+            <span class="roadmap-number">3</span>
+            <div class="roadmap-text"><strong>7x Cloud Roadmaps</strong><br>The Platform to accelerate AI and
+              Cyber</div>
+          </a>
+
+          <div
+            style="text-align: center; padding-top: 8px; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.85rem; margin-top: 0;">
+            Crafted in <strong>3x8-weeks Workshops</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ CRISIS / FRONT DOOR ═══════════ -->
+  <section class="crisis section" id="crisis">
+    <div class="container">
+      <div class="section-label" style="color: var(--accent);">The 2 Burning Business Imperatives</div>
+      <h2 class="section-title">2 forces are challenging your business to transform : it is imperative to act right now.
+      </h2>
+      <p class="section-subtitle-full-spacing">
+        Every Business leader we speak with names the same two root causes driving their urgent need to transform : the
+        AI Revolution and the Cybersecurity Risk. These
+        are not tomorrow's problems, they are today's imperatives.
+      </p>
+      <div class="crisis-grid">
+        <!-- AI Card -->
+        <div class="crisis-card ai">
+          <div class="crisis-icon">&#9889;</div>
+          <h3>AI Is Eroding Your Margins</h3>
+          <p>
+            The AI revolution is at your front door. Your competitors are already leveraging it to reduce their costs
+            and improve customer satisfaction. Your business model may be ready to embrace AI, but your organization is
+            not. Without the right capabilities, the gap only widens.
+          </p>
+          <div class="quote">
+            "We see our competitors using AI to do more with less. If we don't move now, we won't have margins left to
+            protect."
+            <br><small>&mdash; Business Leader, Mid-size Enterprise, Transportation.</small>
+          </div>
+        </div>
+        <!-- Cyber Card -->
+        <div class="crisis-card cyber">
+          <div class="crisis-icon">&#128737;&#65039;</div>
+          <h3>Cyber Risk Threatens Everything You've Built</h3>
+          <p>
+            As your business becomes more connected and AI-driven, your attack surface grows. A single breach means
+            capital loss, IP theft, and irreversible damage to your brand and customer trust. This is not a risk you can
+            defer.
+          </p>
+          <div class="quote">
+            "This represents a huge risk to our capital, our IP, and our reputation. We cannot afford a breach &mdash;
+            not
+            financially, not reputationally."
+            <br><small>&mdash; Business Leader, Small Enterprise, Manufacturing.</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ VALUE PROP / WIIFM ═══════════ -->
+  <section class="value-prop section" id="value">
+    <div class="container">
+      <div class="section-label">Our Proposition</div>
+      <h2 class="section-title">Our commitment : together, we address your two
+        imperatives.</h2>
+      <p class="section-subtitle-full">
+        You need AI readiness and cybersecurity risk mitigation, now. Not a never-ending Digital and AI Transformation
+        program. Our workshop-driven approach puts your two most urgent needs front and center : we deliver roadmaps
+        that rewires
+        your organization from the inside out.
+      </p>
+      <div class="vp-grid">
+        <div class="vp-points">
+          <div class="vp-point">
+            <div class="vp-point-icon">&#127919;</div>
+            <div>
+              <h4>Start with What Matters to You</h4>
+              <p>Choose the AI Journey or the Cybersecurity Journey based on your most pressing need. No prerequisite
+                modules, no forced sequence.</p>
+            </div>
+          </div>
+          <div class="vp-point">
+            <div class="vp-point-icon">&#128295;</div>
+            <div>
+              <h4>Rewiring with our 21 Roadmaps Framework</h4>
+              <p>Our 21 Roadmaps Framework covers capabilities, governance, people, and organizational readiness :
+                we're not just planning technology, we're working towards operational excellence.</p>
+            </div>
+          </div>
+          <div class="vp-point">
+            <div class="vp-point-icon">&#9729;&#65039;</div>
+            <div>
+              <h4>Cloud: The Enabler &amp; Accelerator</h4>
+              <p>Both AI and Cybersecurity depend on cloud infrastructure. Our companion Cloud Journey enables and
+                accelerates the other two by building the platform foundation they run on.</p>
+            </div>
+          </div>
+          <div class="vp-point">
+            <div class="vp-point-icon">&#128230;</div>
+            <div>
+              <h4>Tangible Deliverables, Not Slide Decks</h4>
+              <p>Each journey produces your custom Playbook and 7 actionable Roadmaps &mdash; consumable artifacts that
+                secure
+                buy-in and drive execution.</p>
+            </div>
+          </div>
+        </div>
+        <div class="vp-visual">
+          <h3>2 Imperatives. 1 Enabler.</h3>
+          <div class="vp-stat-row">
+            <div class="vp-stat" style="border: 1px solid var(--accent);">
+              <div class="number ai-color">AI</div>
+              <div class="label">Imperative 1<br>AI Readiness</div>
+            </div>
+            <div class="vp-stat" style="border: 1px solid var(--accent);">
+              <div class="number cyber-color">Cyber</div>
+              <div class="label">Imperative 2<br>Risk Mitigation</div>
+            </div>
+          </div>
+          <div class="vp-stat" style="border: 1px solid var(--text); margin-top: 8px;">
+            <div class="number" style="color: var(--text);">Cloud <em style="color: #666666;">as the Platform</em></div>
+            <div class="label" style="color: var(--text);">Enabler &amp; Accelerator<br>for AI Readiness and Cyber Risks
+              Mitigation</div>
+          </div>
+          <div
+            style="text-align: center; padding-top: 16px; border-top: 1px solid var(--text); color: var(--text-secondary); font-size: 0.85rem; margin-top: 16px;">
+            &middot; 2 journeys &middot; 1 enabler &middot; 8 weeks each &middot; <br> The result : 21 Roadmaps
+            collaboratively built in Workshops
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ JOURNEYS ═══════════ -->
+  <section class="journeys section" id="journeys">
+    <div class="container">
+      <div class="section-label">2 Journeys addressing Your 2 Imperatives, 1 Journey to enable and accelerate both</div>
+      <h2 class="section-title">AI journey or Cyber journey : choose your entry-point</h2>
+      <p class="section-subtitle" style="margin-bottom: 0; max-width: 100%;">
+        Each journey follows an 8-week, workshop-driven engagement that produces your
+        custom Playbook and 7 Roadmaps.
+      </p>
+
+      <div class="journey-tabs">
+        <button class="journey-tab active-ai" onclick="showPanel('ai', this)">&#9889; AI Journey</button>
+        <button class="journey-tab" onclick="showPanel('cyber', this)">&#128737;&#65039; Cybersecurity Journey</button>
+      </div>
+
+      <div class="journey-panels">
+        <!-- AI PANEL -->
+        <div class="journey-panel active" id="panel-ai">
+          <div style="margin-bottom: 0; background: var(--bg); padding: 0; position: relative; border: none;">
+            <div>
+              <h3
+                style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; letter-spacing: -0.03em; color: var(--accent); margin-bottom: 12px;">
+                The 7 Roadmaps to Your AI Journey
+              </h3>
+              <p class="section-subtitle-full-spacing">
+                49% of Business leaders highly involved in AI report that their organizations struggle to estimate and
+                demonstrate AI's value. The problem isn't the technology &mdash; it's the lack of foundational and
+                operational
+                AI capabilities. This journey fixes that.
+              </p>
+            </div>
+          </div>
+          <div class="jp-header" style="display: none;"></div>
+          <div class="jp-meta">
+            <div class="jp-meta-item">&#128197; <strong>8 weeks</strong></div>
+            <div class="jp-meta-item">&#127919; <strong>32 workshop sessions</strong></div>
+            <div class="jp-meta-item">&#128230; <strong>7 custom roadmaps + AI Playbook</strong></div>
+          </div>
+
+          <!-- TIMELINE LANE VISUALIZATION -->
+          <div class="tl-journey">
+            <!-- Playbook starting block -->
+            <div class="tl-playbook">
+              <div class="tl-playbook-label">AI Journey &mdash; Starting Gate</div>
+              <div class="tl-playbook-title">The Playbook to Your AI Journey</div>
+            </div>
+
+            <!-- Connector -->
+            <div class="tl-connector"></div>
+
+            <!-- WorkStream 1 -->
+            <div class="tl-lane">
+              <div class="tl-lane-header">
+                <span class="tl-lane-name">WorkStream 1: Foundational Capabilities Roadmaps (3x)</span>
+                <span class="tl-lane-badge">Weeks 1&ndash;4</span>
+              </div>
+              <div class="tl-cards">
+                <div class="tl-card">
+                  <div class="tl-card-num">01</div>
+                  <div class="tl-card-name">AI Strategy</div>
+                </div>
+                <div class="tl-card">
+                  <div class="tl-card-num">02</div>
+                  <div class="tl-card-name">AI Value</div>
+                </div>
+                <div class="tl-card">
+                  <div class="tl-card-num">03</div>
+                  <div class="tl-card-name">AI Governance</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Connector -->
+            <div class="tl-connector"></div>
+
+            <!-- WorkStream 2 -->
+            <div class="tl-lane">
+              <div class="tl-lane-header">
+                <span class="tl-lane-name">WorkStream 2: Operational Capabilities Roadmaps (4x)</span>
+                <span class="tl-lane-badge">Weeks 5&ndash;8</span>
+              </div>
+              <div class="tl-cards">
+                <div class="tl-card">
+                  <div class="tl-card-num">04</div>
+                  <div class="tl-card-name">AI Organization</div>
+                </div>
+                <div class="tl-card">
+                  <div class="tl-card-num">05</div>
+                  <div class="tl-card-name">AI Talents &amp; Culture</div>
+                </div>
+                <div class="tl-card">
+                  <div class="tl-card-num">06</div>
+                  <div class="tl-card-name">Data &amp; Analytics</div>
+                </div>
+                <div class="tl-card">
+                  <div class="tl-card-num">07</div>
+                  <div class="tl-card-name">The AI Factory</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a href="#connect" class="btn btn-primary">Start Your AI Journey &rarr;</a>
+        </div>
+
+        <!-- CYBER PANEL -->
+        <div class="journey-panel" id="panel-cyber">
+          <div style="margin-bottom: 0; background: var(--bg); padding: 0; position: relative; border: none;">
+            <div>
+              <h3
+                style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; letter-spacing: -0.03em; color: var(--accent); margin-bottom: 12px;">
+                The 7 Roadmaps to Your Cybersecurity Journey
+              </h3>
+              <p class="section-subtitle-full-spacing">
+                As digital and AI adoption accelerates, your cybersecurity risks evolve at an unprecedented pace. Your
+                role is pivotal in maintaining security and compliance while delivering value. This journey builds the
+                capabilities to do both.
+              </p>
+            </div>
+          </div>
+          <div class="jp-header" style="display: none;"></div>
+          <div class="jp-meta">
+            <div class="jp-meta-item">&#128197; <strong>8 weeks</strong></div>
+            <div class="jp-meta-item">&#127919; <strong>32 workshop sessions</strong></div>
+            <div class="jp-meta-item">&#128230; <strong>7 custom roadmaps + Cyber Playbook</strong></div>
+          </div>
+
+          <!-- TIMELINE LANE VISUALIZATION -->
+          <div class="tl-journey">
+            <!-- Playbook starting block -->
+            <div class="tl-playbook">
+              <div class="tl-playbook-label">Cybersecurity Journey &mdash; Starting Gate</div>
+              <div class="tl-playbook-title">The Playbook to Your Cybersecurity Journey</div>
+            </div>
+
+            <!-- Connector -->
+            <div class="tl-connector"></div>
+
+            <!-- WorkStream 1 -->
+            <div class="tl-lane">
+              <div class="tl-lane-header">
+                <span class="tl-lane-name">WorkStream 1: Foundational Capabilities Roadmaps (3x)</span>
+                <span class="tl-lane-badge">Weeks 1&ndash;4</span>
+              </div>
+              <div class="tl-cards">
+                <div class="tl-card">
+                  <div class="tl-card-num">01</div>
+                  <div class="tl-card-name">Cyber Framework</div>
+                </div>
+                <div class="tl-card">
+                  <div class="tl-card-num">02</div>
+                  <div class="tl-card-name">Cyber Value</div>
+                </div>
+                <div class="tl-card">
+                  <div class="tl-card-num">03</div>
+                  <div class="tl-card-name">Cyber Governance</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Connector -->
+            <div class="tl-connector"></div>
+
+            <!-- WorkStream 2 -->
+            <div class="tl-lane">
+              <div class="tl-lane-header">
+                <span class="tl-lane-name">WorkStream 2: Operational Capabilities Roadmaps (4x)</span>
+                <span class="tl-lane-badge">Weeks 5&ndash;8</span>
+              </div>
+              <div class="tl-cards">
+                <div class="tl-card">
+                  <div class="tl-card-num">04</div>
+                  <div class="tl-card-name">Cyber Organization</div>
+                </div>
+                <div class="tl-card">
+                  <div class="tl-card-num">05</div>
+                  <div class="tl-card-name">Talents &amp; Culture</div>
+                </div>
+                <div class="tl-card">
+                  <div class="tl-card-num">06</div>
+                  <div class="tl-card-name">SOC &mdash; Prepare</div>
+                </div>
+                <div class="tl-card">
+                  <div class="tl-card-num">07</div>
+                  <div class="tl-card-name">SOC &mdash; Coordinate</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a href="#connect" class="btn btn-primary" style="background: var(--accent-cyber);">Start Your Cybersecurity
+            Journey &rarr;</a>
+        </div>
+      </div>
+
+      <!-- ── CLOUD COMPANION ── -->
+      <div id="cloud-companion"
+        style="margin-top: 48px; background: var(--bg); padding: 48px; position: relative; border: 1px solid var(--border);">
+        <div>
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+            <span
+              style="font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent);">Enabler
+              &amp; Accelerator</span>
+            <span
+              style="font-family: var(--font-mono); font-size: 0.65rem; font-weight: 500; padding: 3px 10px; border: 1px solid var(--accent); color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em;">Recommended
+              Companion</span>
+          </div>
+          <h3
+            style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; letter-spacing: -0.03em; color: var(--text); margin-bottom: 12px;">
+            The 7 Roadmaps to Your Cloud Journey
+          </h3>
+          <p class="section-subtitle-full-spacing">
+            Both your AI and Cybersecurity Roadmaps depend on a solid cloud foundation. Cloud is the platform enabler
+            that accelerates both journeys &mdash; delivering the agility, performance, and resilience your business
+            demands.
+            Without it, your AI and Cyber investments underperform.
+          </p>
+
+          <!-- TIMELINE LANE VISUALIZATION — CLOUD -->
+          <div class="tl-journey">
+            <!-- Playbook starting block -->
+            <div class="tl-playbook">
+              <div class="tl-playbook-label">Cloud Journey &mdash; Starting Gate</div>
+              <div class="tl-playbook-title">The Playbook to Your Cloud Journey</div>
+            </div>
+
+            <!-- Connector -->
+            <div class="tl-connector"></div>
+
+            <!-- WorkStream 1 -->
+            <div class="tl-lane">
+              <div class="tl-lane-header">
+                <span class="tl-lane-name">WorkStream 1: Foundational Capabilities Roadmaps (3x)</span>
+                <span class="tl-lane-badge">Weeks 1&ndash;4</span>
+              </div>
+              <div class="tl-cards">
+                <div class="tl-card">
+                  <div class="tl-card-num">01</div>
+                  <div class="tl-card-name">Cloud Strategy</div>
+                </div>
+                <div class="tl-card">
+                  <div class="tl-card-num">02</div>
+                  <div class="tl-card-name">Cloud Value</div>
+                </div>
+                <div class="tl-card">
+                  <div class="tl-card-num">03</div>
+                  <div class="tl-card-name">Cloud Governance</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Connector -->
+            <div class="tl-connector"></div>
+
+            <!-- WorkStream 2 -->
+            <div class="tl-lane">
+              <div class="tl-lane-header">
+                <span class="tl-lane-name">WorkStream 2: Operational Capabilities Roadmaps (4x)</span>
+                <span class="tl-lane-badge">Weeks 5&ndash;8</span>
+              </div>
+              <div class="tl-cards">
+                <div class="tl-card">
+                  <div class="tl-card-num">04</div>
+                  <div class="tl-card-name">Cloud Organization</div>
+                </div>
+                <div class="tl-card">
+                  <div class="tl-card-num">05</div>
+                  <div class="tl-card-name">DevOps Talents</div>
+                </div>
+                <div class="tl-card">
+                  <div class="tl-card-num">06</div>
+                  <div class="tl-card-name">Migration Factory</div>
+                </div>
+                <div class="tl-card">
+                  <div class="tl-card-num">07</div>
+                  <div class="tl-card-name">Services Factory</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+            <a href="#connect" class="btn btn-primary">Add the Cloud Journey &rarr;</a>
+            <span
+              style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); letter-spacing: 0.02em;">The
+              platform enabler that accelerates your AI and Cybersecurity Roadmaps</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════ HOW IT WORKS ═══════════ -->
+  <section class="how-it-works section" id="how">
+    <div class="container">
+      <div class="section-label">The Workshop-Driven Approach</div>
+      <h2 class="section-title">Roadmaps are crafted collaboratively during workshops sessions</h2>
+      <p class="section-subtitle-full">
+        No lengthy assessments. No generic slide decks. A focused, iterative, co-creation process that produces the
+        roadmaps you need to act.
+      </p>
+      <div class="hiw-steps">
+        <div class="hiw-step">
+          <div class="hiw-step-num">01</div>
+          <h4>Pick Your Imperative</h4>
+          <p>Choose the AI or Cybersecurity Journey based on your most urgent business need. Add the Cloud Journey to
+            enable and accelerate both.</p>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-step-num">02</div>
+          <h4>Co-Create in Workshops</h4>
+          <p>Over 8 weeks, we work with you and your team through 32 tailored workshop sessions &mdash; iterative,
+            hands-on,
+            and collaborative.</p>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-step-num">03</div>
+          <h4>Build Your Playbook &amp; Roadmaps</h4>
+          <p>Each module produces tangible deliverables: your Playbook for buy-in, and 7 custom Roadmaps covering
+            capabilities from strategy to operations.</p>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-step-num">04</div>
+          <h4>Execute with Confidence</h4>
+          <p>Walk away with a clear execution plan, organizational buy-in, and the capability model to sustain your
+            transformation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ PRICING ═══════════ -->
+  <section class="pricing section" id="pricing">
+    <div class="container">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">Let's Openly Talk About Pricing</h2>
+      <p class="section-subtitle-full">
+        We recognize that small and medium businesses operate with limited resources. Our tiered model ensures you start
+        small, prove value, then scale. With incentives aligned to your success, we only win when you win.
+      </p>
+
+      <div class="price-section-label">Cash-Based &mdash; "A la Carte"</div>
+      <div class="pricing-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="price-card">
+          <div class="tier-label">Tier 1</div>
+          <h4>"Poka Yoke"</h4>
+          <div class="price">$500<span style="font-size: 1rem; font-weight: 400;">/h</span></div>
+          <div class="price-unit">Per hour of workshop session + Performance-based fees</div>
+          <p>Start with 1 session and measure the outcome. Then decide to iterate and scale &mdash; or pivot. That's
+            mistake-proofing.</p>
+          <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 12px; font-style: italic;">"Poka Yoke"
+            = "Mistake Proofing" in Lean Management.</p>
+          <div class="badge-rec">Recommended to Start</div>
+        </div>
+        <div class="price-card">
+          <div class="tier-label">Tier 2</div>
+          <h4>"Heijunka"</h4>
+          <div class="price">$200<span style="font-size: 1rem; font-weight: 400;">/h</span></div>
+          <div class="price-unit">Per hour of workshop session + Performance-based fees</div>
+          <p>Commit to a fixed number of sessions over a set period. Better value, leveled flow, deeper engagement.</p>
+          <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 12px; font-style: italic;">"Heijunka"
+            = "Leveling" in Lean Management.</p>
+        </div>
+      </div>
+
+      <div class="price-section-label">Equity &amp; Partnership &mdash; "Skin in the Game"</div>
+      <div class="pricing-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="price-card">
+          <div class="tier-label">Tier 3</div>
+          <h4>"Sweat Equity"</h4>
+          <div class="price">TBD<span style="font-size: 1rem; font-weight: 400;">/h</span></div>
+          <div class="price-unit">Minimal cash + Equity-based compensation</div>
+          <p>Ideal for startups or cash-constrained businesses. We become stakeholders, removing immediate cash flow
+            pressure and aligning on value creation.</p>
+        </div>
+        <div class="price-card">
+          <div class="tier-label">Tier 4</div>
+          <h4>"Joint Venture"</h4>
+          <div class="price">$0<span style="font-size: 1rem; font-weight: 400;">/h</span></div>
+          <div class="price-unit">Partnership structure &mdash; shared ownership</div>
+          <p>When the goal is creating net-new digital & AI revenue streams or spin-off new business models. We pool
+            resources into a separate entity with shared upside.</p>
+        </div>
+      </div>
+
+      <!-- Pricing Footnote -->
+      <div
+        style="margin-top: 60px; padding: 32px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 2px;">
+        <p style="font-size: 0.95rem; color: var(--text); margin-bottom: 16px; line-height: 1.8;">
+          We recommend starting your journey with Tier 1 for the first iteration, then scaling up to Tier 2 (or 3 or 4).
+          This iterative approach allows you to experience the value of our services incrementally, ensuring alignment
+          with your goals and minimizing risk.
+        </p>
+        <ul
+          style="font-size: 0.95rem; color: var(--text); margin: 0; padding-left: 24px; line-height: 1.8; list-style-type: disc;">
+          <li style="margin-bottom: 12px;">
+            Moving to Tier 2 offers greater cost-effectiveness, as it provides a package of Workshop Sessions priced at
+            a better value compared to scaling piecemeal. However, it does imply a higher level of commitment, which is
+            why we recommend it only after you've experienced the initial benefits of Tier 1 and are ready to deepen the
+            partnership.
+          </li>
+          <li style="margin-bottom: 12px;">
+            Tier 3 or Tier 4 are also eligible at this very moment, presenting you with a different compensation
+            structure that we will review together so to determine the economic viability of becoming stakeholders or
+            business partners.
+          </li>
+          <li>
+            In any case, we encourage you to Book a Free consultation (see below). A prime occasion to discuss your
+            unique needs, and kickstart a collaboration built on shared success.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ CTA / CONNECT ═══════════ -->
+  <section class="cta-final" id="connect">
+    <div class="container">
+      <h2>Let's Connect</h2>
+      <p>A 30-minute introductory call. No pitch, no pressure &mdash; just a focused conversation about your context and
+        what's possible.</p>
+      <div class="cta-steps">
+        <div class="cta-step">
+          <div class="cta-step-num">1</div>
+          <h4>We Listen</h4>
+          <p>Understand your unique context, challenges, and goals.</p>
+        </div>
+        <div class="cta-step">
+          <div class="cta-step-num">2</div>
+          <h4>We Co-Envision</h4>
+          <p>Discuss the "As Is" and "To Be" and draft transition scenarios.</p>
+        </div>
+        <div class="cta-step">
+          <div class="cta-step-num">3</div>
+          <h4>We Deliver</h4>
+          <p>A comprehensive summary report highlighting key points.</p>
+        </div>
+        <div class="cta-step">
+          <div class="cta-step-num">4</div>
+          <h4>We Recommend</h4>
+          <p>Initial recommendations and possible next steps.</p>
+        </div>
+      </div>
+      <a href="#" class="btn btn-primary" style="font-size: 1.1rem; padding: 18px 40px;">Book a Free Consultation
+        &rarr;</a>
+    </div>
+  </section>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer>
+    <div class="container">
+      21.Roadmaps, SPV is a Minsys Business<br>&copy; 2026 Minsys Ventures, LLC
+    </div>
+  </footer>
+
+  <!-- ═══════════ JS ═══════════ -->
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const btn = document.getElementById('themeBtn');
+      if (html.getAttribute('data-theme') === 'dark') {
+        html.setAttribute('data-theme', 'light');
+        btn.textContent = 'Dark';
+      } else {
+        html.setAttribute('data-theme', 'dark');
+        btn.textContent = 'Light';
+      }
+    }
+
+    function showPanel(id, btn) {
+      // Hide all panels
+      document.querySelectorAll('.journey-panel').forEach(p => p.classList.remove('active'));
+      // Reset all tabs
+      document.querySelectorAll('.journey-tab').forEach(t => {
+        t.className = 'journey-tab';
+      });
+      // Show selected
+      document.getElementById('panel-' + id).classList.add('active');
+      const colorClass = id === 'ai' ? 'active-ai' : 'active-cyber';
+      btn.classList.add(colorClass);
+    }
+  </script>
+
+</body>
+
+</html>
