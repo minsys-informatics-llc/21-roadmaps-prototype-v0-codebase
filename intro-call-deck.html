@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>21.Roadmaps — Introductory Call</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ══════════════════════════════════════════════════
+       DESIGN SYSTEM — inherited from 21.Roadmaps site
+       Inter + JetBrains Mono · #ff3e00 accent
+       Flat UI · 0 shadows · 0 gradients · sharp corners
+       ══════════════════════════════════════════════════ */
+
+    @page {
+      size: A4 landscape;
+      margin: 0;
+    }
+
+    :root {
+      --accent: #ff3e00;
+      --accent-hover: #e03600;
+      --bg: #ffffff;
+      --bg-secondary: #f7f7f7;
+      --text: #000000;
+      --text-secondary: #444444;
+      --text-tertiary: #888888;
+      --border: rgba(0, 0, 0, 0.1);
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-heading: 'Inter', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: #e0e0e0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── SLIDE SYSTEM ── */
+    .slide {
+      width: 297mm;
+      height: 210mm;
+      background: var(--bg);
+      margin: 20px auto;
+      padding: 48px 56px;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .slide {
+        margin: 0;
+        page-break-after: always;
+        page-break-inside: avoid;
+      }
+
+      .slide-nav {
+        display: none !important;
+      }
+    }
+
+    /* ── SLIDE HEADER ── */
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .slide-logo {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .slide-logo span {
+      color: var(--accent);
+    }
+
+    .slide-meta {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--text-tertiary);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    .slide-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .slide-title {
+      font-family: var(--font-heading);
+      font-size: 1.9rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .slide-subtitle {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 700px;
+    }
+
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    /* ── FOOTER ── */
+    .slide-footer {
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--text-tertiary);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .slide-number {
+      font-weight: 500;
+    }
+
+    /* ── GRIDS ── */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .grid-2 > * {
+      background: var(--bg);
+      padding: 28px 24px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .grid-4 > * {
+      background: var(--bg);
+      padding: 20px 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .grid-3 > * {
+      background: var(--bg);
+      padding: 24px 20px;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--bg-secondary);
+      padding: 24px;
+      border: 1px solid var(--border);
+    }
+
+    .card-accent {
+      border-left: 3px solid var(--accent);
+    }
+
+    .card h4 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── BADGE ── */
+    .badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      font-weight: 500;
+      padding: 3px 10px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── DIAGNOSTIC TABLE ── */
+    .diag-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+    }
+
+    .diag-table th {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      text-align: center;
+      padding: 10px 8px;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .diag-table th:first-child {
+      text-align: left;
+    }
+
+    .diag-table td {
+      padding: 12px 8px;
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-secondary);
+    }
+
+    .diag-table td:first-child {
+      text-align: left;
+      font-weight: 600;
+      color: var(--text);
+      font-size: 0.85rem;
+    }
+
+    .diag-circle {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--border);
+      border-radius: 0;
+    }
+
+    .diag-circle.filled {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* ── AS-IS / TO-BE ── */
+    .canvas-row {
+      display: grid;
+      grid-template-columns: 200px 1fr 60px 1fr;
+      gap: 0;
+      align-items: stretch;
+      margin-bottom: 1px;
+    }
+
+    .canvas-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text);
+      background: var(--bg-secondary);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .canvas-cell {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+      font-style: italic;
+      min-height: 48px;
+    }
+
+    .canvas-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--accent);
+      font-weight: 800;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .canvas-header {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 10px 8px;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .canvas-header-label {
+      background: var(--bg-secondary);
+      border-bottom: 2px solid var(--border);
+    }
+
+    /* ── STEP NUMBERS ── */
+    .step-num {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    /* ── ACCENT LINE ── */
+    .accent-left {
+      border-left: 3px solid var(--accent);
+      padding-left: 16px;
+    }
+
+    /* ── QUOTE ── */
+    .slide-quote {
+      padding: 20px 24px;
+      background: var(--bg-secondary);
+      border-left: 3px solid var(--accent);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── NAVIGATION (screen only) ── */
+    .slide-nav {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      gap: 8px;
+      z-index: 100;
+    }
+
+    .slide-nav button {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 8px 16px;
+      background: var(--text);
+      color: var(--bg);
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+    }
+
+    .slide-nav button:hover {
+      background: var(--accent);
+    }
+
+    /* ── INSIGHTS AREA ── */
+    .insight-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      padding: 20px 24px;
+      min-height: 80px;
+    }
+
+    .insight-box p {
+      font-size: 0.82rem;
+      color: var(--text-tertiary);
+      font-style: italic;
+    }
+
+    .big-number {
+      font-family: var(--font-heading);
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 1 — TITLE
+       ════════════════════════════════════════════ -->
+  <section class="slide" id="slide-1">
+    <div class="slide-header">
+      <div class="slide-logo"><span>21</span>.Roadmaps</div>
+      <div class="slide-meta">Introductory Call</div>
+    </div>
+
+    <div class="slide-body" style="justify-content: center; align-items: flex-start; gap: 24px;">
+      <div class="slide-label">Discovery Session</div>
+      <div class="slide-title" style="font-size: 2.6rem; max-width: 800px;">
+        Understanding Your World.<br>
+        <span style="color: var(--accent);">Co-Envisioning What's Next.</span>
+      </div>
+      <p class="slide-subtitle" style="max-width: 600px; margin-bottom: 16px;">
+        A 30-minute conversation about your context, your challenges, and
+        what's possible when AI readiness and cybersecurity work together.
+      </p>
+      <div style="display: flex; gap: 24px; align-items: center; margin-top: 16px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-tertiary); letter-spacing: 0.05em; text-transform: uppercase;">With</span>
+          <span style="font-weight: 700; font-size: 0.95rem;">[Prospect Name]</span>
+        </div>
+        <span style="color: var(--border);">|</span>
+        <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-tertiary); letter-spacing: 0.05em; text-transform: uppercase;">
+          [Date]
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Confidential</span>
+      <span class="slide-number">01 / 08</span>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 2 — AGENDA
+       ════════════════════════════════════════════ -->
+  <section class="slide" id="slide-2">
+    <div class="slide-header">
+      <div class="slide-logo"><span>21</span>.Roadmaps</div>
+      <div class="slide-meta">Agenda</div>
+    </div>
+
+    <div class="slide-body">
+      <div class="slide-label">Today's Conversation</div>
+      <div class="slide-title">Two moments. One goal: clarity.</div>
+      <p class="slide-subtitle" style="margin-bottom: 36px;">
+        This is your time. We listen, we ask, we explore together.
+        No pitch, no deck walk-through &mdash; just a focused exchange.
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+        <!-- Listen -->
+        <div class="card card-accent" style="padding: 32px;">
+          <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px;">
+            <span class="big-number" style="font-size: 2.5rem;">01</span>
+            <span class="badge">~12 min</span>
+          </div>
+          <h4 style="font-size: 1.2rem; margin-bottom: 8px;">We Listen</h4>
+          <p style="font-size: 0.9rem;">
+            Your business, your context, your challenges.
+            We come with questions, not answers.
+          </p>
+          <ul style="margin-top: 16px; padding-left: 16px; font-size: 0.82rem; color: var(--text-secondary); line-height: 2;">
+            <li>Your business landscape</li>
+            <li>Pressures on margins &amp; growth</li>
+            <li>AI &amp; Cyber in your reality</li>
+          </ul>
+        </div>
+        <!-- Co-Envision -->
+        <div class="card card-accent" style="padding: 32px;">
+          <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px;">
+            <span class="big-number" style="font-size: 2.5rem;">02</span>
+            <span class="badge">~15 min</span>
+          </div>
+          <h4 style="font-size: 1.2rem; margin-bottom: 8px;">We Co-Envision</h4>
+          <p style="font-size: 0.9rem;">
+            Together, we map where you are and where you want to be.
+            A quick diagnostic and a first sketch of the path.
+          </p>
+          <ul style="margin-top: 16px; padding-left: 16px; font-size: 0.82rem; color: var(--text-secondary); line-height: 2;">
+            <li>Quick readiness self-assessment</li>
+            <li>As-Is &rarr; To-Be mapping</li>
+            <li>First insights &amp; possible directions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Confidential</span>
+      <span class="slide-number">02 / 08</span>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 3 — LISTEN: CONTEXT DISCOVERY
+       ════════════════════════════════════════════ -->
+  <section class="slide" id="slide-3">
+    <div class="slide-header">
+      <div class="slide-logo"><span>21</span>.Roadmaps</div>
+      <div class="slide-meta">01 &mdash; We Listen</div>
+    </div>
+
+    <div class="slide-body">
+      <div class="slide-label">Your World</div>
+      <div class="slide-title">Tell us about your business.</div>
+      <p class="slide-subtitle" style="margin-bottom: 32px;">
+        We're here to understand what drives your business, what keeps you up at night,
+        and where you see the biggest opportunities &mdash; or threats.
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;">
+        <div class="card card-accent">
+          <div class="step-num" style="font-size: 1.5rem;">&#9670;</div>
+          <h4>Your Business</h4>
+          <p>What does your company do? What's your competitive landscape? Where are you winning?</p>
+        </div>
+        <div class="card card-accent">
+          <div class="step-num" style="font-size: 1.5rem;">&#9670;</div>
+          <h4>Your Pressures</h4>
+          <p>What forces are compressing your margins? Where is customer satisfaction slipping?</p>
+        </div>
+        <div class="card card-accent">
+          <div class="step-num" style="font-size: 1.5rem;">&#9670;</div>
+          <h4>Your Ambitions</h4>
+          <p>Where do you want to be in 12&ndash;18 months? What does success look like?</p>
+        </div>
+      </div>
+
+      <div class="insight-box" style="margin-top: 24px;">
+        <p style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; font-style: normal;">Live Notes</p>
+        <p>[Capture key points during the conversation]</p>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Confidential</span>
+      <span class="slide-number">03 / 08</span>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 4 — LISTEN: AI & CYBER REALITY
+       ════════════════════════════════════════════ -->
+  <section class="slide" id="slide-4">
+    <div class="slide-header">
+      <div class="slide-logo"><span>21</span>.Roadmaps</div>
+      <div class="slide-meta">01 &mdash; We Listen</div>
+    </div>
+
+    <div class="slide-body">
+      <div class="slide-label">Two Forces Reshaping Every Business</div>
+      <div class="slide-title">Where do AI &amp; Cyber sit in your reality?</div>
+      <p class="slide-subtitle" style="margin-bottom: 28px;">
+        Not the technology &mdash; the business impact.
+        How are these forces affecting your operations, your customers, your risk exposure?
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border);">
+        <!-- AI side -->
+        <div style="background: var(--bg); padding: 28px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+            <span style="font-size: 1.3rem;">&#9889;</span>
+            <span style="font-family: var(--font-heading); font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em;">AI &amp; Your Margins</span>
+          </div>
+          <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.8;">
+            <div style="margin-bottom: 12px; padding-left: 12px; border-left: 2px solid var(--accent);">
+              Are your competitors using AI to do more with less?
+            </div>
+            <div style="margin-bottom: 12px; padding-left: 12px; border-left: 2px solid var(--accent);">
+              Where could AI unlock value in your operations?
+            </div>
+            <div style="padding-left: 12px; border-left: 2px solid var(--accent);">
+              What's holding you back from adopting AI today?
+            </div>
+          </div>
+          <div class="insight-box" style="margin-top: 16px; min-height: 60px;">
+            <p>[Prospect's AI context]</p>
+          </div>
+        </div>
+        <!-- Cyber side -->
+        <div style="background: var(--bg); padding: 28px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+            <span style="font-size: 1.3rem;">&#128737;&#65039;</span>
+            <span style="font-family: var(--font-heading); font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em;">Cyber &amp; Your Risk</span>
+          </div>
+          <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.8;">
+            <div style="margin-bottom: 12px; padding-left: 12px; border-left: 2px solid var(--accent);">
+              How connected is your business today? What's your exposure?
+            </div>
+            <div style="margin-bottom: 12px; padding-left: 12px; border-left: 2px solid var(--accent);">
+              Have you experienced incidents or near-misses?
+            </div>
+            <div style="padding-left: 12px; border-left: 2px solid var(--accent);">
+              Where does cybersecurity sit in your org today?
+            </div>
+          </div>
+          <div class="insight-box" style="margin-top: 16px; min-height: 60px;">
+            <p>[Prospect's Cyber context]</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Confidential</span>
+      <span class="slide-number">04 / 08</span>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 5 — CO-ENVISION: MINI DIAGNOSTIC
+       ════════════════════════════════════════════ -->
+  <section class="slide" id="slide-5">
+    <div class="slide-header">
+      <div class="slide-logo"><span>21</span>.Roadmaps</div>
+      <div class="slide-meta">02 &mdash; We Co-Envision</div>
+    </div>
+
+    <div class="slide-body">
+      <div class="slide-label">Quick Readiness Pulse</div>
+      <div class="slide-title">Where do you stand today?</div>
+      <p class="slide-subtitle" style="margin-bottom: 24px;">
+        A 2-minute self-assessment. No right or wrong answers &mdash;
+        just an honest snapshot to anchor our conversation.
+      </p>
+
+      <table class="diag-table">
+        <thead>
+          <tr>
+            <th style="width: 35%;">Capability Dimension</th>
+            <th style="width: 13%;">Not Started</th>
+            <th style="width: 13%;">Ad Hoc</th>
+            <th style="width: 13%;">Emerging</th>
+            <th style="width: 13%;">Structured</th>
+            <th style="width: 13%;">Optimized</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>&#9889; AI Strategy &amp; Vision</td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+          </tr>
+          <tr>
+            <td>&#9889; AI Value &amp; Use Cases</td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+          </tr>
+          <tr>
+            <td>&#9889; Data &amp; Analytics Maturity</td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+          </tr>
+          <tr>
+            <td>&#128737;&#65039; Cybersecurity Framework</td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+          </tr>
+          <tr>
+            <td>&#128737;&#65039; Risk Governance</td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+          </tr>
+          <tr>
+            <td>&#128737;&#65039; Incident Preparedness</td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+          </tr>
+          <tr>
+            <td>&#9729;&#65039; Cloud Foundation</td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+            <td><span class="diag-circle"></span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top: 16px; font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-tertiary); letter-spacing: 0.05em; text-transform: uppercase;">
+        Fill together during the call &mdash; mark one box per row
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Confidential</span>
+      <span class="slide-number">05 / 08</span>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 6 — CO-ENVISION: AS-IS / TO-BE
+       ════════════════════════════════════════════ -->
+  <section class="slide" id="slide-6">
+    <div class="slide-header">
+      <div class="slide-logo"><span>21</span>.Roadmaps</div>
+      <div class="slide-meta">02 &mdash; We Co-Envision</div>
+    </div>
+
+    <div class="slide-body">
+      <div class="slide-label">Mapping the Gap</div>
+      <div class="slide-title">From where you are to where you need to be.</div>
+      <p class="slide-subtitle" style="margin-bottom: 20px;">
+        Based on what you've shared, let's sketch the transition together.
+      </p>
+
+      <!-- Canvas Header -->
+      <div class="canvas-row" style="margin-bottom: 0;">
+        <div class="canvas-header canvas-header-label" style="background: var(--bg-secondary); text-align: left; padding-left: 16px;">Dimension</div>
+        <div class="canvas-header">As-Is &mdash; Today</div>
+        <div class="canvas-header" style="padding: 10px 4px;"></div>
+        <div class="canvas-header">To-Be &mdash; 12-18 Months</div>
+      </div>
+
+      <!-- Row: Business Model -->
+      <div class="canvas-row">
+        <div class="canvas-label">Business Model</div>
+        <div class="canvas-cell">[Current state]</div>
+        <div class="canvas-arrow">&rarr;</div>
+        <div class="canvas-cell">[Target state]</div>
+      </div>
+
+      <!-- Row: AI Capabilities -->
+      <div class="canvas-row">
+        <div class="canvas-label">AI Capabilities</div>
+        <div class="canvas-cell">[Current state]</div>
+        <div class="canvas-arrow">&rarr;</div>
+        <div class="canvas-cell">[Target state]</div>
+      </div>
+
+      <!-- Row: Cyber Posture -->
+      <div class="canvas-row">
+        <div class="canvas-label">Cyber Posture</div>
+        <div class="canvas-cell">[Current state]</div>
+        <div class="canvas-arrow">&rarr;</div>
+        <div class="canvas-cell">[Target state]</div>
+      </div>
+
+      <!-- Row: Organization -->
+      <div class="canvas-row">
+        <div class="canvas-label">People &amp; Org</div>
+        <div class="canvas-cell">[Current state]</div>
+        <div class="canvas-arrow">&rarr;</div>
+        <div class="canvas-cell">[Target state]</div>
+      </div>
+
+      <!-- Row: Cloud / Platform -->
+      <div class="canvas-row">
+        <div class="canvas-label">Platform / Cloud</div>
+        <div class="canvas-cell">[Current state]</div>
+        <div class="canvas-arrow">&rarr;</div>
+        <div class="canvas-cell">[Target state]</div>
+      </div>
+
+      <div style="margin-top: 16px; display: flex; gap: 20px; align-items: center;">
+        <span class="badge">Co-created live</span>
+        <span style="font-size: 0.78rem; color: var(--text-tertiary);">
+          This canvas captures the gap &mdash; the foundation for any roadmap.
+        </span>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Confidential</span>
+      <span class="slide-number">06 / 08</span>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 7 — CO-ENVISION: FIRST INSIGHTS
+       ════════════════════════════════════════════ -->
+  <section class="slide" id="slide-7">
+    <div class="slide-header">
+      <div class="slide-logo"><span>21</span>.Roadmaps</div>
+      <div class="slide-meta">02 &mdash; We Co-Envision</div>
+    </div>
+
+    <div class="slide-body">
+      <div class="slide-label">Emerging Picture</div>
+      <div class="slide-title">What we're hearing. What it could mean.</div>
+      <p class="slide-subtitle" style="margin-bottom: 28px;">
+        Reflecting back the patterns from our conversation &mdash;
+        and the directions worth exploring.
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px;">
+        <!-- What we heard -->
+        <div>
+          <div style="font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px;">
+            What We Heard
+          </div>
+          <div class="card card-accent" style="margin-bottom: 8px; min-height: 56px;">
+            <p>[Key insight #1 from the conversation]</p>
+          </div>
+          <div class="card card-accent" style="margin-bottom: 8px; min-height: 56px;">
+            <p>[Key insight #2 from the conversation]</p>
+          </div>
+          <div class="card card-accent" style="min-height: 56px;">
+            <p>[Key insight #3 from the conversation]</p>
+          </div>
+        </div>
+
+        <!-- What it could mean -->
+        <div>
+          <div style="font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px;">
+            Possible Directions
+          </div>
+          <div class="card" style="margin-bottom: 8px; min-height: 56px; border-left: 3px solid var(--text);">
+            <p>[Direction / advisory point #1]</p>
+          </div>
+          <div class="card" style="margin-bottom: 8px; min-height: 56px; border-left: 3px solid var(--text);">
+            <p>[Direction / advisory point #2]</p>
+          </div>
+          <div class="card" style="min-height: 56px; border-left: 3px solid var(--text);">
+            <p>[Direction / advisory point #3]</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-quote" style="margin-top: 24px;">
+        "The gap between where you are and where you need to be is your roadmap."
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Confidential</span>
+      <span class="slide-number">07 / 08</span>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SLIDE 8 — CLOSE: WHAT'S NEXT
+       ════════════════════════════════════════════ -->
+  <section class="slide" id="slide-8">
+    <div class="slide-header">
+      <div class="slide-logo"><span>21</span>.Roadmaps</div>
+      <div class="slide-meta">Close</div>
+    </div>
+
+    <div class="slide-body" style="justify-content: center; gap: 32px;">
+      <div class="slide-label">Thank You</div>
+      <div class="slide-title" style="font-size: 2.2rem; max-width: 700px;">
+        Thank you for sharing your world with us.
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); max-width: 800px;">
+        <div style="background: var(--bg); padding: 24px 20px;">
+          <div class="step-num" style="font-size: 1.8rem;">01</div>
+          <h4 style="font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700; margin-bottom: 6px;">Summary Report</h4>
+          <p style="font-size: 0.82rem; color: var(--text-secondary);">
+            Within 48h, we send you a written summary of today's conversation and diagnostic.
+          </p>
+        </div>
+        <div style="background: var(--bg); padding: 24px 20px;">
+          <div class="step-num" style="font-size: 1.8rem;">02</div>
+          <h4 style="font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700; margin-bottom: 6px;">Initial Recommendations</h4>
+          <p style="font-size: 0.82rem; color: var(--text-secondary);">
+            Tailored guidance based on your As-Is / To-Be mapping and readiness pulse.
+          </p>
+        </div>
+        <div style="background: var(--bg); padding: 24px 20px;">
+          <div class="step-num" style="font-size: 1.8rem;">03</div>
+          <h4 style="font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700; margin-bottom: 6px;">Your Call</h4>
+          <p style="font-size: 0.82rem; color: var(--text-secondary);">
+            No obligation. You decide if and when to continue the conversation.
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-top: 12px; max-width: 600px;">
+        <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7;">
+          Everything discussed today stays confidential.
+          The summary report and recommendations are yours to keep, regardless of next steps.
+        </p>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Confidential</span>
+      <span class="slide-number">08 / 08</span>
+    </div>
+  </section>
+
+  <!-- ═══════════ NAVIGATION (screen only) ═══════════ -->
+  <div class="slide-nav">
+    <button onclick="navigate(-1)">&larr; Prev</button>
+    <button onclick="navigate(1)">Next &rarr;</button>
+    <button onclick="window.print()">Export PDF</button>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function navigate(dir) {
+      currentSlide = Math.max(0, Math.min(slides.length - 1, currentSlide + dir));
+      slides[currentSlide].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') navigate(-1);
+    });
+  </script>
+
+</body>
+
+</html>
