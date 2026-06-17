@@ -16,7 +16,7 @@ So I ask the question why is that absolutely necessary to “Optimize or transfo
 And their answers is straight to the point each time - there are 2 clusters “”= the 2 root causes” :  
 
 AI  - “The AI revolution is at my front door, I see my competitors are always leveraging it to reduce their margins and improve customer satisfaction . My Business model is ready to embrace AI, but my organization is not”, they said  
-Cybersecurity - Along with this AI revolution their Business is more and more vulnerable to cyberthreats as their business is more and more “”connected” . “This represent a huge risk of losses (Capital - Financial , IP) and a non acceptable risk at the brand / cusomer perpception level as well.” , they said .   
+Cybersecurity - Along with this AI revolution their Business is more and more vulnerable to cyberthreats as their business is more and more “”connected” . “This represent a huge risk of losses (Capital - Financial , IP) and a non acceptable risk at the brand / cusomer perpception level as well.” , they said.   
 
 As Laurent I understand:  When I talk about my offering they are not seeing the WIITM and my value proposition dilutes instantly. 
  -> Indeed my offering is end to end from the Leadership posture, the D&AI strategy towards operational excellence this is the entire spectrum and it confuses my prospects. 
@@ -29,7 +29,7 @@ So let’s stay in this problem space. 
 
 My request to you as you are my business advisor : 
 
-Please conduct an comprehensive analysis :  thesis, antithesis, synthesis- that will help me deciding if and why & why now I need to pivot my offering into a new one. (The new one is NOT the subject of the analysis ). For the output I want a comprehensive, detailled analysis in plain text. Use Minto Pyramid to structure the output . 
+Please conduct an comprehensive analysis :  thesis, antithesis, synthesis- that will help me deciding if and why & why now I need to pivot my offering into a new one. (The new one is NOT the subject of the analysis ). For the output I want a comprehensive, detailled analysis in plain text. Use Minto Pyramid to structure the output. 
 
 ## Answer 
 
