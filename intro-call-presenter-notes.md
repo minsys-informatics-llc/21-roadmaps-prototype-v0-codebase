@@ -25,7 +25,7 @@
 
 ### Presenter guidance
 
-- **Do NOT share the deck on screen yet.** Start camera-to-camera.
+- **Do NOT share the deck on screen yet.** Start camera-to-camera
 - Set the frame: you are the advisor, they are the expert on their business.
 - If they brought their CTO, acknowledge them warmly but keep addressing the CEO/business leader as the primary.
 - Establish psychological safety: "There are no wrong answers today."
